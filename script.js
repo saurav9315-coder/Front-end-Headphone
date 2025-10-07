@@ -9,7 +9,7 @@ ScrollSmoother.create({
 
 
 let isShortHeight = window.screen.height < 1050;  // this is only tp make animation acccording to screen height but not requrired.. 
-// you can remove or change this value according to your requrement
+                                                  // you can remove or change this value according to your requrement
 // console.log(window.screen.height);
 
 ScrollTrigger.matchMedia({
@@ -59,17 +59,28 @@ ScrollTrigger.matchMedia({
       immediateRender: false
     });
 
-    gsap.to('#headphone', {
+     gsap.to('#headphone', {
       scrollTrigger: {
         trigger: '#section5',
         start: 'top bottom',
         end: 'center bottom',
         scrub: true,
-        // x: () => poductCard.getBoundingClientRect().left + window.screenX + 50,
-        // y: () => poductCard.getBoundingClientRect().top + window.screenY + 50,
       },
-      y: isShortHeight ? '440vh' : '390vh',
-      width: '22vw',
+      y: isShortHeight ? '360vh' : '344vh',
+      width: '28vw',
+      ease: 'power1.inOut',
+      immediateRender: false
+    });
+
+    gsap.to('#headphone', {
+      scrollTrigger: {
+        trigger: '#section5',
+        start: 'center bottom',
+        end: 'bottom bottom',
+        scrub: true,
+      },
+      y: isShortHeight ? '455vh' : '420vh',
+      width: '300px',
       ease: 'power1.inOut',
       immediateRender: false
     });
@@ -129,8 +140,8 @@ ScrollTrigger.matchMedia({
     });
 
     gsap.from(split.chars, {
-      yPercent: () => gsap.utils.random(-100, 100),
-      rotation: () => gsap.utils.random(-30, 30),
+      yPercent: ()=> gsap.utils.random(-100, 100),
+      rotation: ()=> gsap.utils.random(-30, 30),
       autoAlpha: 0,
       ease: 'back.out(1.5)',
       stagger: {
