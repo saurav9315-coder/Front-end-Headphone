@@ -79,11 +79,86 @@ header nav{
 
 header .logo{
   max-width: 132px;
+  position: relative;
+  transition: all 0.6s ease-in-out;
+  transform-style: preserve-3d;
+  filter: drop-shadow(0 0 20px #00ffff) drop-shadow(0 0 40px #ff00ff);
+  perspective: 800px;
 }
 
-header .btn{
-  background-color: var(--secondary-color);
+/* 🌀 3D tilt + glow hover effect */
+header .logo:hover{
+  transform: rotateY(25deg) rotateX(15deg) scale(1.1);
+  filter: drop-shadow(0 0 35px #ff00ff) drop-shadow(0 0 60px #00ffff);
 }
+
+/* 💫 Add a holographic reflection under the logo */
+header .logo::after{
+  content: "";
+  position: absolute;
+  bottom: -50%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: inherit;
+  transform: rotateX(180deg);
+  opacity: 0.15;
+  filter: blur(4px);
+  pointer-events: none;
+}
+
+/* ⚡ Add glowing rotation pulse animation */
+@keyframes logo3DGlow {
+  0% { filter: drop-shadow(0 0 15px #00ffff) drop-shadow(0 0 25px #ff00ff); }
+  50% { filter: drop-shadow(0 0 30px #ff00ff) drop-shadow(0 0 50px #00ffff); }
+  100% { filter: drop-shadow(0 0 15px #00ffff) drop-shadow(0 0 25px #ff00ff); }
+}
+
+header .logo {
+  animation: logo3DGlow 2.5s infinite alternate;
+}
+
+
+/* 💥 Crazy 3D Neon Button Effect */
+header .btn {
+  position: relative;
+  color: #fff;
+  font-weight: 600;
+  letter-spacing: 1px;
+  border: none;
+  outline: none;
+  padding: 0.7rem 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 5px 0 #47260f, 0 0 25px rgba(255, 68, 0, 0.6);
+  transform: perspective(500px) translateZ(0);
+  transition: all 0.3s ease-in-out;
+}
+
+/* Hover — lift up 3D + glowing border */
+header .btn:hover {
+  transform: perspective(500px) translateZ(25px) rotateX(10deg) rotateY(-10deg);
+  box-shadow: 0 10px 25px rgba(255, 94, 0, 0.8), 0 0 40px #ff5100aa, inset 0 0 10px #ffffff55;
+  background: linear-gradient(45deg, var(--secondary-color), #ffae00);
+  cursor: pointer;
+}
+
+/* Click — press-in animation */
+header .btn:active {
+  transform: perspective(500px) translateZ(5px) rotateX(0deg) rotateY(0deg);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.6) inset;
+}
+
+/* Optional glowing border animation */
+@keyframes glowPulse {
+  0% { box-shadow: 0 0 10px #ff6600, 0 0 20px #ff3300; }
+  50% { box-shadow: 0 0 25px #ff9900, 0 0 50px #ff6600; }
+  100% { box-shadow: 0 0 10px #ff3300, 0 0 20px #ff6600; }
+}
+
+header .btn:hover {
+  animation: glowPulse 1.5s infinite alternate;
+}
+
 
 #main{
   overflow: hidden;
